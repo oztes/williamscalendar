@@ -1,0 +1,15 @@
+{% extends "base.html" %} {%block title%}My Events{%endblock%}
+
+{% block content %}
+<h2 align="center">My Events</h2>
+<ul class="list-group lisit-group-flush" id="events">
+    {% for event in user.events %}
+        <li class="list-group-item">
+            {{ event.name }}
+            {{ event.start_time }}
+            {{ event.description }}
+            {{ event.date }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
