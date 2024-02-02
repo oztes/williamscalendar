@@ -6,7 +6,9 @@
     {% for event in user.events %}
         <li class="list-group-item">
             {{ event.name }}
+            {{ event.event_date }}
             {{ event.start_time }}
+            {{ event.end_time }}
             {{ event.description }}
             {{ event.date }}
         </li>

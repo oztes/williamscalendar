@@ -51,11 +51,13 @@ def calendar():
 def submission():
     if request.method == 'POST':
         name = request.form.get('name')
+        event_date = request.form.get('event_date')
         start_time = request.form.get('start_time')
+        end_time = request.form.get('end_time')
         description = request.form.get('description')
 
         # implement some restrictions here with if statements to restrict data types
-        new_event = Event(name=name, start_time=start_time, description=description, user_id=current_user.id)
+        new_event = Event(name=name, event_date=event_date, start_time=start_time, end_time=end_time, description=description, user_id=current_user.id)
         db.session.add(new_event)
         db.session.commit()
         flash("Event Added!", category="success!")

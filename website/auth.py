@@ -45,6 +45,9 @@ def sign_up():
         #ADD more like password types
 
         #########
+
+
+        
         
         user = User.query.filter_by(email=email).first()
         if user:
@@ -57,7 +60,8 @@ def sign_up():
             new_user = User(email=email, first_name=first_name, password=generate_password_hash(password1, method='pbkdf2:sha256'))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            # This gives signup error because it logs in right after signing up
+            #login_user(user, remember=True)
             flash("Account created!", category="success")
 
             return redirect(url_for('views.home'))
