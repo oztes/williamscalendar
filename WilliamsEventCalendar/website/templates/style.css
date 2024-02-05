@@ -1,0 +1,25 @@
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day-column {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.day-column h4 {
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.day-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.day-column ul li {
+    margin-top: 5px;
+}

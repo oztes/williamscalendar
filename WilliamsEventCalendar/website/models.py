@@ -4,12 +4,13 @@ from sqlalchemy.sql import func
 
 
 class Event(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200))
-    #change this to accomodate different quarters of an hour(maybe a float?)
+    event_date = db.Column(db.String(50))
     start_time = db.Column(db.String(50))
+    end_time = db.Column(db.String(50))
     description = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default= func.now())
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 #Use this class as a model for the event class

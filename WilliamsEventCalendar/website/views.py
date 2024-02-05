@@ -3,6 +3,9 @@ from flask_login import login_required, current_user
 from .models import Note, Event
 from . import db
 import json
+from .models import Event
+from datetime import datetime, timedelta
+import calendar
 
 views = Blueprint('views', __name__)
 
@@ -42,9 +45,15 @@ def my_events():
 @views.route('/calendar', methods=['GET'])
 @login_required
 def calendar():
-    data = Event.query.all()
-    #remove current user after fixing code in calendar.html
-    return render_template("calendar.html", user=current_user, data=data)
+    today = datetime.today()
+    start_of_week = today - timedelta(days=today.weekday())  # Monday
+    end_of_week = start_of_week + timedelta(days=6)  # Sunday
+
+    events = Event.query.filter(Event.date >= start_of_week, Event.date <= end_of_week).all()
+    week = [start_of_week + timedelta(days=i) for i in range(7)]  # list of datetime objects
+
+    return render_template("calendar.html", user=current_user, events=events, week=week)
+
 
 @views.route('/submitevent', methods=["GET", "POST"])
 @login_required

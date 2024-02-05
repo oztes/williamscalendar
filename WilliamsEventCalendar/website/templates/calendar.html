@@ -1,15 +1,19 @@
-{% extends "base.html" %} {%block title%}Calendar{%endblock%}
+{% extends "base.html" %}
 
 {% block content %}
-<h2 align="center">Calendar</h2>
-<ul class="list-group lisit-group-flush" id="events">
-    {% for event in data %}
-        <li class="list-group-item">
-            {{ event.name }}
-            {{ event.start_time }}
-            {{ event.description }}
-            {{ event.date }}
-        </li>
+<h2>Weekly Calendar</h2>
+<div id="calendar" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px;">
+    {% for day in week %}
+    <div class="day-column">
+        <h4>{{ day.strftime('%A %d, %B') }}</h4>
+        <ul>
+            {% for event in events %}
+            {% if event.date.strftime('%Y-%m-%d') == day.strftime('%Y-%m-%d') %}
+            <li>{{ event.name }} - {{ event.start_time }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}
