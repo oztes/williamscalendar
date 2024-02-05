@@ -1,0 +1,17 @@
+{% extends "base.html" %} {%block title%}Calendar{%endblock%}
+
+{% block content %}
+<h2 align="center">Calendar</h2>
+<ul class="list-group lisit-group-flush" id="events">
+    {% for event in data %}
+        <li class="list-group-item">
+            {{ event.name }}
+            {{ event.event_date }}
+            {{ event.start_time }}
+            {{ event.end_time }}
+            {{ event.description }}
+            <!-- event.date is not the date of the event but the date they registered the event on the calendar-->
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
